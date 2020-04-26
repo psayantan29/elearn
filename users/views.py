@@ -4,7 +4,7 @@ from .forms import *
 
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import user_passes_test, login_required
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages

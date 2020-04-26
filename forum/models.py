@@ -17,4 +17,4 @@ class Comment(models.Model):
     message = models.TextField()
     author = models.CharField(max_length=30)
     date_created = models.DateTimeField(auto_now_add=True)
-    comment_fk = models.ForeignKey(Topic)
+    comment_fk = models.ForeignKey(Topic, on_delete=models.CASCADE)
