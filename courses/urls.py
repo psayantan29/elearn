@@ -4,11 +4,12 @@ from users import views as user_views
 
 urlpatterns = [
     url(r'^$', course_views.courses, name='courses'),
-
     url(r'^student/(?P<course_name>[\w ]+)/$', user_views.course_homepage, name='course_homepage'),
+    url(r'^student/(?P<course_name>[\w ]+)/charge/$', user_views.charge ,name='charge'),
+    url(r'^student/(?P<course_name>[\w ]+)/charge/test/$', user_views.charged, name="test"),
     url(r'^student/(?P<course_name>[\w ]+)/(?P<slug>[\w-]+)/$', user_views.student_course,
         name='student_course'),
-
+    
     url(r'^professor/(?P<course_name>[\w ]+)/$', course_views.course, name='professor_course'),
     url(r'^professor/(?P<course_name>[\w ]+)/delete/$', course_views.delete_course, name='delete'),
     url(r'^professor/(?P<course_name>[\w ]+)/edit/$', course_views.update_course, name='edit'),

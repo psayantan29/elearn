@@ -4,9 +4,10 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from .forms import *
 
 
+
 @login_required
 def courses(request):
-    if request.user.is_professor or request.user.is_site_admin:
+    if request.user.is_site_admin:
         queryset = Course.objects.all()
     else:
         queryset = Course.objects.filter(for_everybody=True)

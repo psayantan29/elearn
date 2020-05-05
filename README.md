@@ -7,7 +7,7 @@ E-Learning was designed to provide pleasant experience for users.
 Assuming you use virtualenv, follow these steps to download and run the
 e-learning application in this directory:
 
-    $ git clone https://github.com/avuletica/eLearning.git
+    
     $ cd eLearning
     $ virtualenv venv
     $ source ./venv/bin/activate
@@ -22,8 +22,8 @@ e-learning application in this directory:
     * Visit http://127.0.0.1:8000/
 
 # Compatibility
-* Python 2.7
-* Django 1.9
+* Python
+* Django
 * SQLite, PostgreSQL, MySQL
 
 # Notes

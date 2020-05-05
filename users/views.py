@@ -11,7 +11,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from itertools import chain
 from django.http import Http404
-
+import razorpay
+import json
 
 def home(request):
     context = {
@@ -63,6 +64,35 @@ def profile(request):
 
     return redirect(reverse('student'))
 
+@login_required
+def charged(request,course_name):
+    razorpay_client = razorpay.Client(auth=("rzp_test_6ChBFF3DEQamI8", "RIn69McAqs35zFjHZOB0jqjM"))
+    amount = 50000
+    payment_id = request.POST['razorpay_payment_id']
+    razorpay_client.payment.capture(payment_id, amount)
+    c=Course.objects.get(course_name=course_name)
+
+    c.purchase()
+    print(c.purchased)
+    print("my name is Piyush \n")
+
+    
+    # return json.dumps(razorpay_client.payment.fetch(payment_id))
+    
+    return render(request, "courses/charged.html")
+
+
+@login_required
+def charge(request,course_name):
+    c=Course.objects.filter(course_name=course_name).values('purchased')
+    if c==True:
+        return render(request,"courses/charged.html")
+
+    else:    
+        context = {
+           "title": "Courses",
+            }
+        return render(request, "courses/charge.html",context)
 
 @user_passes_test(lambda user: user.is_site_admin)
 def admin(request):
@@ -170,10 +200,10 @@ def course_homepage(request, course_name):
     chapter_list = Chapter.objects.filter(course__course_name=course_name)
 
     if chapter_list:
-        return redirect(reverse(student_course, kwargs={'course_name': course_name,
-                                                        "slug": chapter_list[0].slug}))
+        return redirect( reverse("courses/charge") )
+        # reverse(student_course, kwargs={'course_name': course_name, "slug": chapter_list[0].slug})
     else:
-        warning_message = "Currently there are no chapters for this course "
+        warning_message = "Currently there are no videos for this webinar "
         messages.warning(request, warning_message)
         return redirect(reverse('courses'))
 

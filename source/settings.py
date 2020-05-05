@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # My apps
     'users',
     'courses',
-    'forum'
+    
 ]
 
 MIDDLEWARE = [
@@ -158,7 +158,7 @@ REGISTRATION_OPEN = True
 LOGIN_REDIRECT_URL = '/courses'
 LOGIN_URL = '/accounts/login'
 
-SITE_ID = 1
+SITE_ID = 3
 # --- DJANGO REGISTRATION REDUX SETTINGS END ---
 
 # Config for sending mail from our official e-mail address

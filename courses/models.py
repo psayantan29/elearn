@@ -16,9 +16,11 @@ class Course(models.Model):
     user = models.ForeignKey(UserProfile,on_delete=models.CASCADE, default=1)
     students = models.ManyToManyField(UserProfile, related_name='students_to_course')
     for_everybody = models.BooleanField(default=True)
-
+    purchased = models.BooleanField(default=False)
     def __unicode__(self):
         return self.course_name
+    def purchase(self):
+        self.purchased=True
 
 
 class Chapter(models.Model):

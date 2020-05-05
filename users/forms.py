@@ -34,3 +34,8 @@ class Contact(forms.Form):
     email = forms.EmailField(label='Email', max_length=30)
     message = forms.CharField(widget=forms.Textarea)
 
+# class register(forms.Form):
+#     username= forms.CharField(label="Name", max_length=30)
+#     email = forms.EmailField(label="EMail",max_length=30)
+    
+

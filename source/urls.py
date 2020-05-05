@@ -21,14 +21,18 @@ from users import views as user_views
 
 urlpatterns = [
     url(r'^$', user_views.home, name='home'),
+    
     url(r'^about/$', user_views.about, name='about'),
     url(r'^contact/$', user_views.contact, name='contact'),
-
+    
     url(r'^admin/', admin.site.urls),
     url(r'^courses/', include('courses.urls')),
-    url(r'^forum/', include('forum.urls')),
+   
     url(r'^profile/', include('users.urls')),
-    url(r'^accounts/', include('registration.backends.default.urls')),
+    # url(r'^accounts/', include('django.contrib.auth.urls')),    
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    
+    
 ]
 
 # Remove this in project deployment
