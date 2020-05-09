@@ -1,7 +1,7 @@
 from django import forms
 from .models import *
 import re
-
+from tinymce.widgets import TinyMCE
 
 class AddCourseForm(forms.ModelForm):
     class Meta:
@@ -40,9 +40,18 @@ class AddLinkForm(forms.ModelForm):
 
 
 class AddTxtForm(forms.ModelForm):
+
+    # lesson = forms.CharField(widget=TinyMCE())
     class Meta:
         model = TextBlock
-        fields = ["lesson"]
+        fields = ['lesson']
+
+class AddGDLinkForm(forms.ModelForm):
+    class Meta:
+        model = gdlink
+        fields = ['link']
+
+
 
 
 class EditCourseForm(forms.ModelForm):
@@ -62,6 +71,10 @@ class EditYTLinkForm(forms.ModelForm):
         model = YTLink
         fields = ['link']
 
+class EditGDLinkForm(forms.ModelForm):
+    class Meta:
+        model = gdlink
+        fields = ['link']
 
 class EditTxtForm(forms.ModelForm):
     class Meta:

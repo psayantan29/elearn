@@ -36,6 +36,10 @@
                 {{ item.link|safe }}
                 </div>
                 {% endif %}
+            {% elif item.gdlink %}
+              <div class="course-ineer-content video">
+                 <iframe src="{{ item.gdlink }}" ></iframe>
+              </div>
             {% elif item.lesson %}
               <div class="course-inner-content">
                 {{ item.lesson|safe }}

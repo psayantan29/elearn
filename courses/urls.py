@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^professor/(?P<course_name>[\w ]+)/students/(?P<student_id>[\d ]+)/add/$',
         course_views.add_students, name='add_students'),
 
-    url(r'^professor/(?P<course_name>[\w ]+)/(?P<slug>[\w-]+)/$', course_views.chapter, name='chapter'),
+    url(r'^professor/(?P<course_name>[\w-]+)/(?P<slug>[\w-]+)/$', course_views.chapter, name='chapter'),
     url(r'^professor/edit/(?P<course_name>[\w ]+)/(?P<slug>[\w-]+)/$',
         course_views.update_chapter, name='edit_chapter'),
     url(r'^professor/delete/(?P<course_name>[\w ]+)/(?P<slug>[\w-]+)/$',
@@ -33,6 +33,9 @@ urlpatterns = [
     url(r'^professor/(?P<course_name>[\w ]+)/(?P<slug>[\w-]+)/(?P<yt_id>[\d ]+)/link/edit/$',
         course_views.update_yt_link, name='edit_link'),
     url(r'^professor/link/delete/(?P<yt_id>[\d ]+)/$', course_views.delete_yt_link, name='delete_link'),
-
+    url(r'^professor/(?P<course_name>[\w ]+)/(?P<slug>[\w-]+)/(?P<gd_id>[\d ]+)/gdlink/edit/$',
+        course_views.update_gd_link, name='edit_gdlink'),
+    url(r'^professor/gdlink/delete/(?P<gd_id>[\d ]+)/$', course_views.delete_gd_link, name='delete_gdlink'),
     url(r'^professor/file/delete/(?P<file_id>[\d ]+)/$', course_views.delete_file, name='delete_file'),
+    
 ]

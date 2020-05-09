@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # My apps
     'users',
     'courses',
+    'tinymce',
     
 ]
 
@@ -166,7 +167,14 @@ SITE_ID = 3
 
 settings_sensitive = BASE_DIR + '/source/settings_sensitive.py'
 if os.path.isfile(settings_sensitive):
-    from settings_sensitive import *
+    
+
+    EMAIL_USE_TLS = True
+
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'piyushkumar0810@gmail.com'
+    EMAIL_HOST_PASSWORD = 'garg0810'
+    EMAIL_PORT = 587
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 

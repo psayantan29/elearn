@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% include 'head_css.html' %}
+{% include 'javascript.html' %}
 {% load static %}
 
 {% block content %}
+  {% include 'breadcrumb.html' %}
   <!-- Chapter css is in course core css -->
-  <link href="{% static "css/course.css" %}" rel="stylesheet"/>
+  {% comment %} <link href="{% static "css/course.css" %}" rel="stylesheet"/> {% endcomment %}
   <script src="{% static "js/tinymce/jquery.tinymce.min.js" %}"></script>
-  <script src="{% static "js/tinymce/tinymce.min.js" %}"></script>
+  <script src="{% static "js/tinymce/tinymce.min.js" %}"></script> 
   <script>tinymce.init({
-    selector: 'textarea', resize: false
+    selector: 'lesson', resize: false
   });
   </script>
-  {% include 'breadcrumb.html' %}
+  
 
   <div class="container">
     <div class="row">
@@ -19,6 +22,7 @@
         <form method='POST' action=''>
           {% csrf_token %}
           {{ add_txt_form|crispy }}
+         
           <input class='btn btn-primary' type='submit' name="add_text" value='Add text'/>
         </form>
       </div>
@@ -31,15 +35,24 @@
         </form>
       </div>
 
+      
+
       <div class="col-md-3">
         <form method='POST' action='' enctype="multipart/form-data">
           {% csrf_token %}
-          {{ file_upload_form|crispy }}
+          {{ file_upload_form|crispy }} 
           <input class='btn btn-primary' type='submit' name="add_file" value='Add File'/>
         </form>
       </div>
     </div>
-  
+
+    <div class="col-md-3">
+        <form method='POST' action=''>
+          {% csrf_token %}
+          {{ add_gdlink_form|crispy }}
+          <input class='btn btn-primary' type='submit' name="add_gdlink" value='Add google drive video link'/>
+        </form>
+    </div>
 
     <!-- Chapter text row -->
     <div class="row">
@@ -130,6 +143,34 @@
     </div>
   </div>
 
+
+  <div class="row">
+      {% if queryset_gdlink %}
+        <table style="width:76%;" align="center" class="table table-bordered generic-table scroll_table">
+          <thead>
+          <tr>
+            <th>GDLink</th>
+            <th>Date created</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          {% for instance in queryset_gdlink %}
+            <tr>
+              <td class="col-md-8">{{ instance.link }}</td>
+              <td class="col-md-2">{{ instance.date_created }}</td>
+              <td class="col-md-2">
+                <a href="{% url 'edit_gdlink' course_name slug instance.id %}">
+                  <input class='btn btn-primary btn-sm' type='submit' value='Edit Link'/>
+                </a>
+                <a href="{% url 'delete_gdlink' instance.id %}">
+                  <input class='btn btn-primary btn-sm' type='submit' value='Delete Link'/>
+                </a> 
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% endif %}
+  </div>
 
 
 {% endblock %}

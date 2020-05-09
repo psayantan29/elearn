@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import os
+from users.models import UserProfile
 
 from django.db import models
 from users.models import UserProfile
@@ -8,20 +9,22 @@ from django.db.models.signals import pre_save
 from django.utils.text import slugify
 from django.dispatch import receiver
 
-
 # Create your models here.
 class Course(models.Model):
     course_name = models.CharField(unique=True, max_length=20)
     course_created_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(UserProfile,on_delete=models.CASCADE, default=1)
-    students = models.ManyToManyField(UserProfile, related_name='students_to_course')
+    # students = models.ManyToManyField(UserProfile, related_name='students_to_course')
+    students = models.ManyToManyField(UserProfile,through="subscriptions", related_name='students_to_course')
+
     for_everybody = models.BooleanField(default=True)
-    purchased = models.BooleanField(default=False)
     def __unicode__(self):
         return self.course_name
-    def purchase(self):
-        self.purchased=True
 
+class subscriptions(models.Model):
+    user=models.ForeignKey(UserProfile ,on_delete=models.CASCADE)
+    course=models.ForeignKey(Course , on_delete=models.CASCADE)
+    
 
 class Chapter(models.Model):
     chapter_name = models.CharField(max_length=20)
@@ -33,7 +36,7 @@ class Chapter(models.Model):
         return self.chapter_name
 
     def get_absolute_url(self):
-        return reverse("chapter", kwargs={"course_name": self.course,
+        return reverse("chapter", kwargs={"course_name": self.course.course_name,
                                           "slug": self.slug})
 
     def slug_default(self):
@@ -66,13 +69,18 @@ pre_save.connect(pre_save_receiver, sender=Chapter)
 
 class TextBlock(models.Model):
     lesson = models.TextField()
-    text_block_fk = models.ForeignKey(Chapter,  on_delete=models.CASCADE, default=1)
+    text_block_fk = models.ForeignKey(Chapter,  on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
 
 
 class YTLink(models.Model):
     link = models.URLField(max_length=200)
     yt_link_fk = models.ForeignKey(Chapter,  on_delete=models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+class gdlink(models.Model):
+    link = models.URLField(max_length=200)
+    gd_link_fk = models.ForeignKey(Chapter,  on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
 
 

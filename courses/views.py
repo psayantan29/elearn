@@ -24,7 +24,9 @@ def courses(request):
 def course(request, course_name=None):
     add_chapter_form = AddChapterForm(request.POST or None)
     queryset_chapter = Chapter.objects.filter(course__course_name=course_name)
-
+    # for i in queryset_chapter:
+    #     print(i.course.course_name)
+    
     context = {
         "title": course_name,
         "add_chapter_form": add_chapter_form,
@@ -33,13 +35,14 @@ def course(request, course_name=None):
         "path": "Profile",
         "redirect_path": "profile",
     }
-
+    
     if add_chapter_form.is_valid():
         instance = add_chapter_form.save(commit=False)
         instance.course = Course.objects.get(course_name=course_name)
         instance.save()
+        
         return redirect(reverse('professor_course', kwargs={'course_name': course_name}))
-
+    
     return render(request, "courses/course.html", context)
 
 
@@ -49,21 +52,26 @@ def chapter(request, course_name=None, slug=None):
 
     add_link_form = AddLinkForm(request.POST or None)
     add_txt_form = AddTxtForm(request.POST or None)
+    add_gdlink_form=AddGDLinkForm(request.POST or None)
     file_upload_form = FileUploadForm(request.POST or None, request.FILES or None)
 
     queryset_txt_block = TextBlock.objects.filter(text_block_fk__id=place.id)
     queryset_yt_link = YTLink.objects.filter(yt_link_fk__id=place.id)
     queryset_files = FileUpload.objects.filter(file_fk__id=place.id)
+    queryset_gdlink = gdlink.objects.filter(gd_link_fk__id=place.id)
 
+    
     context = {
         "title": place.chapter_name,
         "course_name": course_name,
         "slug": slug,
         "add_link_form": add_link_form,
         "add_txt_form": add_txt_form,
+        "add_gdlink_form": add_gdlink_form,
         "queryset_yt_link": queryset_yt_link,
         "queryset_txt_block": queryset_txt_block,
         "queryset_files": queryset_files,
+        "queryset_gdlink": queryset_gdlink, 
         "path": "Profile",
         "redirect_path": "profile",
         "file_upload_form": file_upload_form,
@@ -84,9 +92,24 @@ def chapter(request, course_name=None, slug=None):
         return redirect(reverse('chapter', kwargs={'course_name': course_name,
                                                    'slug': slug}))
 
+    if add_gdlink_form.is_valid() and 'add_gdlink' in request.POST:
+        print("hi   ")
+        instance = add_gdlink_form.save(commit=False)
+        instance.gd_link_fk = Chapter.objects.get(id=place.id)
+
+        instance.gdlink = add_gdlink_form.cleaned_data.get("link")
+        instance.save()
+
+        return redirect(reverse('chapter', kwargs={'course_name': course_name,
+                                                   'slug': slug}))
+
+
+        
     if add_txt_form.is_valid() and 'add_text' in request.POST:
         instance = add_txt_form.save(commit=False)
+        print("hi")
         instance.text_block_fk = Chapter.objects.get(id=place.id)
+        # instance.lesson = add_txt_form.get('lesson')
         instance.save()
         return redirect(reverse('chapter', kwargs={'course_name': course_name,
                                                    'slug': slug}))
@@ -118,6 +141,13 @@ def delete_chapter(request, course_name=None, slug=None):
 @user_passes_test(lambda user: user.is_professor)
 def delete_yt_link(request, yt_id=None):
     instance = YTLink.objects.get(id=yt_id)
+    instance.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@user_passes_test(lambda user: user.is_professor)
+def delete_gd_link(request, gd_id=None):
+    instance = gdlink.objects.get(id=gd_id)
     instance.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -205,6 +235,28 @@ def update_yt_link(request, course_name=None, slug=None, yt_id=None):
 
     return render(request, "courses/edit.html", context)
 
+
+@user_passes_test(lambda user: user.is_professor)
+def update_gd_link(request, course_name=None, slug=None, gd_id=None):
+    instance = gdlink.objects.get(id=gd_id)
+    update_link_form = EditGDLinkForm(request.POST or None, instance=instance)
+
+    context = {
+        "title": "Edit",
+        "course_name": course_name,
+        "gd_id": gd_id,
+        "slug": slug,
+        "form": update_link_form,
+        "path": "Profile",
+        "redirect_path": "profile",
+    }
+
+    if update_link_form.is_valid():
+        update_link_form.save()
+        return redirect(reverse('chapter', kwargs={'course_name': course_name,
+                                                   "slug": slug}))
+
+    return render(request, "courses/edit.html", context)
 
 @user_passes_test(lambda user: user.is_professor)
 def update_text_block(request, course_name=None, slug=None, txt_id=None):

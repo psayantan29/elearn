@@ -11,8 +11,14 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from itertools import chain
 from django.http import Http404
+from .models import UserProfile
 import razorpay
 import json
+
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def home(request):
     context = {
@@ -56,7 +62,10 @@ def contact(request):
 
 @login_required
 def profile(request):
+    print(request)
+
     if request.user.is_site_admin:
+        
         return redirect(reverse('admin'))
 
     elif request.user.is_professor:
@@ -70,29 +79,40 @@ def charged(request,course_name):
     amount = 50000
     payment_id = request.POST['razorpay_payment_id']
     razorpay_client.payment.capture(payment_id, amount)
-    c=Course.objects.get(course_name=course_name)
+    # c=Course.objects.get(course_name=course_name)
+    # c.students.set([request.user])
+    # print(request)
+    # print(c.students)
+    # c.purchase()
+    # c.save()
 
-    c.purchase()
-    print(c.purchased)
-    print("my name is Piyush \n")
+    # print(c.students)
+    # print("my name is Piyush \n")
 
     
     # return json.dumps(razorpay_client.payment.fetch(payment_id))
     
-    return render(request, "courses/charged.html")
+    return redirect('profile')
 
 
 @login_required
 def charge(request,course_name):
-    c=Course.objects.filter(course_name=course_name).values('purchased')
-    if c==True:
-        return render(request,"courses/charged.html")
+    c=Course.objects.filter(course_name=course_name)
+    print(c)
+    q=c[0]
+    print(q)
+    print(q.students)
+    # print(q.get("purchased"))
+    # if q.get("purchased") == True:
 
-    else:    
-        context = {
+    #     print("hi")
+    #     return render(request,"courses/charged.html")
+
+    
+    context = {
            "title": "Courses",
             }
-        return render(request, "courses/charge.html",context)
+    return render(request, "courses/charge.html",context)
 
 @user_passes_test(lambda user: user.is_site_admin)
 def admin(request):
@@ -198,9 +218,11 @@ def delete_user(request, username):
 @login_required
 def course_homepage(request, course_name):
     chapter_list = Chapter.objects.filter(course__course_name=course_name)
-
+    for i in Course.objects.filter(students=request.user):
+        if i.course_name == course_name:
+            return redirect(reverse(student_course, kwargs={'course_name': course_name, "slug": chapter_list[0].slug}))
     if chapter_list:
-        return redirect( reverse("courses/charge") )
+        return redirect( reverse("charge") )
         # reverse(student_course, kwargs={'course_name': course_name, "slug": chapter_list[0].slug})
     else:
         warning_message = "Currently there are no videos for this webinar "
@@ -216,11 +238,12 @@ def student_course(request, course_name, slug=None):
     text = TextBlock.objects.filter(text_block_fk=chapter)
     videos = YTLink.objects.filter(yt_link_fk=chapter)
     files = FileUpload.objects.filter(file_fk=chapter)
+    gdlinks = gdlink.objects.filter(gd_link_fk=chapter)
     user = request.user
-
+    
     if user in course.students.all() or user.is_professor or user.is_site_admin or course.for_everybody:
         result_list = sorted(
-            chain(text, videos, files),
+            chain(text, videos, files, gdlinks),
             key=lambda instance: instance.date_created)
 
         context = {
@@ -231,7 +254,7 @@ def student_course(request, course_name, slug=None):
             "result_list": result_list,
             "title": course_name + ' : ' + chapter.chapter_name,
         }
-
+        # print(result_list)
         return render(request, "users/student_courses.html", context)
 
     else:
