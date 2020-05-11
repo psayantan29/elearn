@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^profile/', include('users.urls')),
     # url(r'^accounts/', include('django.contrib.auth.urls')),    
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    
+    url(r"^referrals/", include("pinax.referrals.urls")),
     
 ]
 

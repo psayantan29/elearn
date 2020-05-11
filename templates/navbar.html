@@ -20,6 +20,11 @@
         {% else %}
           <li><a href="/"><span class="glyphicon glyphicon-education"></span> Courses</a></li>
         {% endif %}
+        {% if request.user.is_authenticated %}
+          <li><a href="{% url 'affiliate' %}"><span class="glyphicon glyphicon-record"></span> Affiliate</a></li>
+        {% else %}
+          <li><a href="/"><span class="glyphicon glyphicon-record"></span> Affiliate</a></li>
+        {% endif %}
         <li><a href="{% url 'about' %}"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
         <li><a href="{% url 'contact' %}"><span class="glyphicon glyphicon-earphone"></span> Contact</a></li>
         

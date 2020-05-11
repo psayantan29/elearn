@@ -93,7 +93,7 @@ def chapter(request, course_name=None, slug=None):
                                                    'slug': slug}))
 
     if add_gdlink_form.is_valid() and 'add_gdlink' in request.POST:
-        print("hi   ")
+        
         instance = add_gdlink_form.save(commit=False)
         instance.gd_link_fk = Chapter.objects.get(id=place.id)
 

@@ -1,8 +1,10 @@
-from django.conf.urls import url
+from django.conf.urls import url,include
 from . import views as user_views
 
 urlpatterns = [
     url(r'^$', user_views.profile, name='profile'),
+    url(r'^affiliate/$', user_views.affiliate, name='affiliate'),
+    
     url(r'^student/$', user_views.student, name='student'),
     url(r'^professor/$', user_views.professor, name='professor'),
     url(r'^admin/', user_views.admin, name='admin'),

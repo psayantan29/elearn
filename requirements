@@ -1,3 +1,6 @@
 Django
 django-crispy-forms
 django-registration-redux
+razorpay
+pinax-referrals
+six

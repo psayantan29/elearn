@@ -1,7 +1,7 @@
 from django import forms
 from .models import *
 import re
-from tinymce.widgets import TinyMCE
+# from tinymce.widgets import TinyMCE
 
 class AddCourseForm(forms.ModelForm):
     class Meta:

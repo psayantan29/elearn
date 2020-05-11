@@ -1,7 +1,7 @@
 from courses.forms import AddCourseForm
 from courses.models import *
 from .forms import *
-
+from pinax.referrals.models import Referral
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.urls import reverse
@@ -62,7 +62,8 @@ def contact(request):
 
 @login_required
 def profile(request):
-    print(request)
+    action = Referral.record_response(request, "login")
+    print(action)
 
     if request.user.is_site_admin:
         
@@ -70,8 +71,16 @@ def profile(request):
 
     elif request.user.is_professor:
         return redirect(reverse('professor'))
+    elif action is not None:
+        referral = Referral.objects.get(id=action.referral.id)
+        profile = UserProfile.objects.get(username=request.user.username)
+        profile.parent = UserProfile.objects.get(username=referral.user.username)
+
+        profile.save()
+           
 
     return redirect(reverse('student'))
+        
 
 @login_required
 def charged(request,course_name):
@@ -79,12 +88,12 @@ def charged(request,course_name):
     amount = 50000
     payment_id = request.POST['razorpay_payment_id']
     razorpay_client.payment.capture(payment_id, amount)
-    # c=Course.objects.get(course_name=course_name)
-    # c.students.set([request.user])
+    c=Course.objects.get(course_name=course_name)
+    c.students.set([request.user])
     # print(request)
     # print(c.students)
     # c.purchase()
-    # c.save()
+    c.save()
 
     # print(c.students)
     # print("my name is Piyush \n")
@@ -94,6 +103,27 @@ def charged(request,course_name):
     
     return redirect('profile')
 
+@login_required
+def affiliate(request):
+    
+    profile = UserProfile.objects.get(username=request.user.username)
+    # profile.parent = Profile.objects.get(user=referral.user)
+    
+          
+    referral = Referral.create(
+    user=profile,
+    redirect_to=reverse("profile")
+    )
+        
+    profile.referral=referral
+    profile.save()
+    context={
+        "profile":profile
+
+    }
+    
+    return render(request, "users/affiliate.html",context)
+    
 
 @login_required
 def charge(request,course_name):
@@ -107,11 +137,14 @@ def charge(request,course_name):
 
     #     print("hi")
     #     return render(request,"courses/charged.html")
-
+    user=request.user
     
     context = {
            "title": "Courses",
+            "user":user,
+            "course":course_name,
             }
+    
     return render(request, "courses/charge.html",context)
 
 @user_passes_test(lambda user: user.is_site_admin)

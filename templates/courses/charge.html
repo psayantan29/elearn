@@ -4,21 +4,23 @@
 {%block content%}
     <form action="test/" method="POST">
     {% csrf_token %}
+    
         <script
             src="https://checkout.razorpay.com/v1/checkout.js"
             data-key="rzp_test_6ChBFF3DEQamI8"
             data-amount="50000"
-            data-name="Purchase"
-            data-description="Purchase Description"
-            data-image="vk.jpg"
+            data-name="{{course}} Payment"
+            data-description="This is for the payment of course:{{course}}"
+            data-image=""
             data-netbanking="true"
-            data-description="Tron Legacy"
-            data-prefill.name="Harshil Mathur"
-            data-prefill.email="harshil@razorpay.com"
-            data-prefill.contact="9999999999"
-            data-notes.shopping_order_id="21">
+            data-description=""
+            data-prefill.name="{{ user.name }}"
+            data-prefill.email="{{ user.email }}"
+            data-prefill.contact=""
+            data-notes.shopping_order_id="">
         </script>
-        <input type="hidden" name="shopping_order_id" value="21">
+        
+        <input type="hidden" name="course_purchase_order_id" >
     </form>
-
+    
 {% endblock %}
