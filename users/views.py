@@ -24,15 +24,24 @@ def home(request):
     context = {
         "title": "eLearning",
     }
+    action = Referral.record_response(request, "login")
+    
+    respo=render(request, "home.html", context)
+      
+    if action is not None:
+        referral = Referral.objects.get(id=action.referral.id)
+        respo.set_cookie('parent',referral.user.username)
+      
 
-    return render(request, "home.html", context)
+    return respo
 
 
 def about(request):
     context = {
         "title": "About",
     }
-
+    tutorial  = request.COOKIES['parent']
+    print(tutorial) 
     return render(request, "users/about.html", context)
 
 
@@ -62,8 +71,7 @@ def contact(request):
 
 @login_required
 def profile(request):
-    action = Referral.record_response(request, "login")
-    print(action)
+    
 
     if request.user.is_site_admin:
         
@@ -71,13 +79,7 @@ def profile(request):
 
     elif request.user.is_professor:
         return redirect(reverse('professor'))
-    elif action is not None:
-        referral = Referral.objects.get(id=action.referral.id)
-        profile = UserProfile.objects.get(username=request.user.username)
-        profile.parent = UserProfile.objects.get(username=referral.user.username)
-
-        profile.save()
-           
+  
 
     return redirect(reverse('student'))
         
@@ -112,7 +114,7 @@ def affiliate(request):
           
     referral = Referral.create(
     user=profile,
-    redirect_to=reverse("profile")
+    redirect_to=reverse("home")
     )
         
     profile.referral=referral

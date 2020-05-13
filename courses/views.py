@@ -16,7 +16,14 @@ def courses(request):
         "title": "Courses",
         "queryset": queryset,
     }
-
+    if request.COOKIES['parent']:
+        parent = request.COOKIES['parent']
+    
+    profile = UserProfile.objects.get(username=request.user.username)
+    if not profile.parent:
+        profile.parent = UserProfile.objects.get(username=parent)
+        profile.save()
+    print(profile.parent)
     return render(request, "users/course.html", context)
 
 
