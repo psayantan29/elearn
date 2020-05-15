@@ -1,1 +1,1 @@
-web: gunicorn findeducate.wsgi --log-file -
+web: gunicorn eLearning.wsgi --log-file -
