@@ -40,8 +40,8 @@ def about(request):
     context = {
         "title": "About",
     }
-    tutorial  = request.COOKIES['parent']
-    print(tutorial) 
+    # tutorial  = request.COOKIES['parent']
+    # print(tutorial) 
     return render(request, "users/about.html", context)
 
 

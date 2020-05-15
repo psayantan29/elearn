@@ -25,7 +25,7 @@ SECRET_KEY = '^5b8p7m5j5*w9b=@9g3p4ixy=3!ycpw-ruf0#xj%v)!0cj4h2e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [   "findeducate.herokuapp.com"]
+ALLOWED_HOSTS = [   "findeducate.herokuapp.com","localhost"]
 
 
 # Application definition
@@ -137,7 +137,8 @@ MEDIA_URL = '/media/'
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static_in_project", "static_root")
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "users/static_in_users", "static_files"),
