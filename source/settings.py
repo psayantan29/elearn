@@ -162,7 +162,7 @@ REGISTRATION_OPEN = True
 LOGIN_REDIRECT_URL = '/courses'
 LOGIN_URL = '/accounts/login'
 
-SITE_ID = 5
+SITE_ID = 6
 # --- DJANGO REGISTRATION REDUX SETTINGS END ---
 
 # Config for sending mail from our official e-mail address
