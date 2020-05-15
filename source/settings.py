@@ -25,7 +25,7 @@ SECRET_KEY = '^5b8p7m5j5*w9b=@9g3p4ixy=3!ycpw-ruf0#xj%v)!0cj4h2e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [   "findeducate.herokuapp.com"]
 
 
 # Application definition
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+        'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -135,12 +136,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "static_in_project", "static_root")
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static_in_project", "static_root")
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "users/static_in_users", "static_files"),
-    #os.path.join(BASE_DIR, "users/static_in_users", "media"),
+    # os.path.join(BASE_DIR, "users/static_in_users", "media"),
     #'/var/www/static_in_users/',
 ]
 
@@ -180,3 +181,8 @@ if os.path.isfile(settings_sensitive):
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 AUTH_USER_MODEL = 'users.UserProfile'
+
+
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
