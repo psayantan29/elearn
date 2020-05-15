@@ -16,7 +16,8 @@ def courses(request):
         "title": "Courses",
         "queryset": queryset,
     }
-    if request.COOKIES['parent']:
+    if "parent" in request.COOKIES.keys():
+    # if request.COOKIES['parent']:
         parent = request.COOKIES['parent']
     
     profile = UserProfile.objects.get(username=request.user.username)
