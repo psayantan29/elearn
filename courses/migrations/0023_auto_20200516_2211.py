@@ -12,10 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
        
-        migrations.RemoveField(
-            model_name='subscriptions',
-            name='date_joined',
-        ),
+        
         migrations.AddField(
             model_name='course',
             name='link',
