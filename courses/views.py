@@ -2,29 +2,45 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import user_passes_test, login_required
 from .forms import *
-
+from pinax.referrals.models import Referral
 
 
 @login_required
 def courses(request):
+    user=request.user
+    
+    print(user)
+    
     if request.user.is_site_admin:
         queryset = Course.objects.all()
     else:
-        queryset = Course.objects.filter(for_everybody=True)
+        queryset = Course.objects.filter(for_everybody=True )
+        queryset2 = Course.objects.filter(students=user)
+        queryset =[x for x in queryset if x not in queryset2]
 
     context = {
         "title": "Courses",
         "queryset": queryset,
     }
-    if "parent" in request.COOKIES.keys():
-    # if request.COOKIES['parent']:
-        parent = request.COOKIES['parent']
-    
+    if "pinax-referral" in request.COOKIES.keys():
+        ref=request.COOKIES['pinax-referral']
+        code, session_key=ref.split(':')
+
         profile = UserProfile.objects.get(username=request.user.username)
+        
         if not profile.parent:
-            profile.parent = UserProfile.objects.get(username=parent)
-            profile.save()
-        print(profile.parent)
+            #  print('hi')
+            #  print(ref)
+
+            #  print("hi")
+             
+             refer=Referral.objects.get(code=code)
+            #  print(type(refer))
+             parent = UserProfile.objects.get(referral=refer)
+             profile.parent = parent
+             profile.save()
+             
+        # print(profile.parent)
     return render(request, "users/course.html", context)
 
 
@@ -45,6 +61,7 @@ def course(request, course_name=None):
     }
     
     if add_chapter_form.is_valid():
+        
         instance = add_chapter_form.save(commit=False)
         instance.course = Course.objects.get(course_name=course_name)
         instance.save()
@@ -191,7 +208,18 @@ def update_course(request, course_name=None):
     }
 
     if update_course_form.is_valid():
-        update_course_form.save()
+        course_name = update_course_form.cleaned_data.get("course_name")
+        instance = update_course_form.save(commit=False)
+    
+        instance.text = update_course_form.cleaned_data.get("text")
+        key = update_course_form.cleaned_data.get("link")
+
+        if 'embed' not in key and 'youtube' in key:
+            key = key.split('=')[1]
+            instance.link = 'https://www.youtube.com/embed/' + key
+
+        
+        instance.save()
         return redirect(reverse('profile'))
 
     return render(request, "courses/edit.html", context)

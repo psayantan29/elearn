@@ -1,26 +1,83 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{%block content%}
-    <form action="test/" method="POST">
-    {% csrf_token %}
+
+
+{% block content %}
+    <style>
+        .razorpay-payment-button {
+            color: #FFF;
+            font-size: 1em;
+            padding: 12px 30px;
+            border: none;
+            font-weight: bold;
+            background-color: #e4551d;
+            display: inline-block;
+            -webkit-transition: all 0.3s ease-out;
+            -moz-transition: all 0.3s ease-out;
+            -o-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+            margin-bottom: 1em;
+        }
+
+        .razorpay-payment-button:hover {
+            color: #fff;
+            text-decoration: none;
+            background: #637f83;
+            -moz-box-shadow: 8px 8px 8px #637f83;
+            -webkit-box-shadow: 8px 8px 8px #637f83;
+            box-shadow: 8px 8px 8px #637f83;
+        }
+    </style>
+    <div class="col-md-10">
+
+        {% if intro %}
+            {%if intro.course_name%}
+            <div>
+              <h1>{{intro.course_name}}</h1>
+            </div>
+            {%endif%}          
+            {% if intro.link %}
+              {% if 'youtube.com' in intro.link %}
+                <div class="course-inner-content video">
+                  <iframe width="640" height="360" src="{{ intro.link }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+              {% else %}
+                <div class="course-inner-content">
+                {{ intro.link|safe }}
+                </div>
+              {% endif %}
+        {%endif%}
+        {%endif%}
+            {% if text %}
+            
+              <div class="course-inner-content">
+                <h1>{{ text|safe }}</h1>
+              </div>
+            {% endif %}
     
-        <script
-            src="https://checkout.razorpay.com/v1/checkout.js"
-            data-key="rzp_test_6ChBFF3DEQamI8"
-            data-amount="50000"
-            data-name="{{course}} Payment"
-            data-description="This is for the payment of course:{{course}}"
-            data-image=""
-            data-netbanking="true"
-            data-description=""
-            data-prefill.name="{{ user.name }}"
-            data-prefill.email="{{ user.email }}"
-            data-prefill.contact=""
-            data-notes.shopping_order_id="">
-        </script>
-        
-        <input type="hidden" name="course_purchase_order_id" >
-    </form>
-    
+    </div>
+    <div class="container text-center">
+        <form action="test/" method="POST">
+            {% csrf_token %}
+
+            <script
+                    src="https://checkout.razorpay.com/v1/checkout.js"
+                    data-key="rzp_test_6ChBFF3DEQamI8"
+                    data-amount="50000"
+                    data-name="{{ course }} Payment"
+                    data-description="This is for the payment of course:{{ course }}"
+                    data-image=""
+                    data-netbanking="true"
+                    data-description=""
+                    data-prefill.name="{{ user.name }}"
+                    data-prefill.email="{{ user.email }}"
+                    data-prefill.contact=""
+                    data-notes.shopping_order_id="">
+            </script>
+
+            <input type="hidden" name="course_purchase_order_id">
+        </form>
+    </div>
+
 {% endblock %}

@@ -1,15 +1,35 @@
 /*--course-box-model--*/
 .inner-wrap {
     /* border&shadow */
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: 8px 8px 8px #637F83;
-    -webkit-box-shadow: 8px 8px 8px #637F83;
-    box-shadow: 8px 8px 8px #637F83;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 4px 4px 4px #637F83;
+    -webkit-box-shadow: 4px 4px 4px #637F83;
+    box-shadow: 4px 4px 4px #637F83;
     background-color: #637F83;
 }
+.inner-wrap:hover{
 
+    -moz-box-shadow: 12px 12px 12px #e4551d;
+    -webkit-box-shadow: 12px 12px 12px #e4551d;
+    box-shadow: 12px 12px 12px #e4551d;
+    color: #fff;
+    text-decoration: none;
+    transition-duration: .3s;
+    background: #e4551d;
+
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.inner-wrap:hover>.inner-top{
+
+    transition-duration: .3s;
+    color: #fff;
+    text-decoration: none;
+    background: #e4551d;
+}
 .inner-top {
+    border-radius: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     color: #fff;

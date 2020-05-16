@@ -132,7 +132,7 @@ def charge(request,course_name):
     c=Course.objects.filter(course_name=course_name)
     print(c)
     q=c[0]
-    print(q)
+    print(q.text)
     print(q.students)
     # print(q.get("purchased"))
     # if q.get("purchased") == True:
@@ -145,6 +145,8 @@ def charge(request,course_name):
            "title": "Courses",
             "user":user,
             "course":course_name,
+            "intro":q,
+            "text": q.text
             }
     
     return render(request, "courses/charge.html",context)
@@ -191,6 +193,14 @@ def professor(request):
         course_name = add_course_form.cleaned_data.get("course_name")
         instance = add_course_form.save(commit=False)
         instance.user = request.user
+        instance.text = add_course_form.cleaned_data.get("text")
+        key = add_course_form.cleaned_data.get("link")
+
+        if 'embed' not in key and 'youtube' in key:
+            key = key.split('=')[1]
+            instance.link = 'https://www.youtube.com/embed/' + key
+
+        
         instance.save()
         return redirect(reverse('professor_course', kwargs={'course_name': course_name}))
 

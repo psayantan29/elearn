@@ -183,8 +183,7 @@ p.m_2 {
 
 /*--banner--*/
 .banner {
-    background: url(../img/e-banner.png) no-repeat 0 0;
-    min-height: 350px;
+    background: url(../img/visa-conference.jpg) no-repeat 0 0;
     background-size: 100% 100%;
 }
 
@@ -202,3 +201,249 @@ p.m_2 {
     }
 }
 
+.about_background {
+    background: url(../img/photo-1549605735-a452d45d5efb.jpeg) no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+.about {
+
+    color: white;
+}
+        .screen-container {
+            position: relative;
+            border: 2px solid #fff;
+            margin: 3vh 3vh 12vh 3vh;
+            border-radius: 15px;
+        }
+
+
+        .countdown {
+            border: 2px solid #fff;
+            border-radius: 12px;
+            padding: 0.5vh;
+            margin: 1vh
+        }
+
+        .countdown:hover {
+            background-color: #e4551d;
+            color: white;
+            transition-duration: 0.1s;
+            border-radius: 1vh;
+
+            border: none;
+        }
+
+        .btn1:hover {
+            background-color: #e4551d;
+            color: white;
+            transition-duration: 0.5s;
+            border-radius: 1vh;
+
+            border: none;
+
+        }
+
+        .btn1 {
+            color: #fff;
+            background-color: transparent;
+            border: 1px solid white;
+            font-weight: bold;
+            font-size: 25px;
+            border-radius: 0;
+        }
+
+        /* center the blockquote in the page */
+        .blockquote-wrapper {
+            display: flex;
+            height: 60vh;
+            padding: 0 20px;
+        }
+
+        /* Blockquote main style */
+        .blockquote {
+            position: relative;
+            font-family: 'Barlow Condensed', sans-serif;
+            max-width: 620px;
+            margin: 80px auto;
+            align-self: center;
+        }
+
+        /* Blockquote header */
+        .blockquote h1 {
+            font-family: 'Abril Fatface', cursive;
+            position: relative; /* for pseudos */
+            color: #e4551d;
+            font-size: 2.8rem;
+            font-weight: normal;
+            line-height: 1;
+            margin: 0;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        /* Blockquote right double quotes */
+        .blockquote h1:after {
+            content: "";
+            position: absolute;
+            border: 2px solid #e4551d;
+            border-radius: 0 50px 0 0;
+            width: 60px;
+            height: 60px;
+            bottom: -62px;
+            left: 50px;
+            border-bottom: none;
+            border-left: none;
+            z-index: 3;
+        }
+
+        .blockquote h1:before {
+            content: "";
+            position: absolute;
+            width: 80px;
+            border: 6px solid #292a2b;
+            bottom: -3px;
+            left: 50px;
+            z-index: 2;
+        }
+
+        /* increase header size after 600px */
+        @media all and (min-width: 600px) {
+            .blockquote h1 {
+                font-size: 3rem;
+                line-height: 1.2;
+            }
+
+        }
+
+        /* Blockquote subheader */
+        .blockquote h4 {
+            position: relative;
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin: 0;
+            padding-top: 15px;
+            z-index: 1;
+            margin-left: 150px;
+            padding-left: 12px;
+        }
+
+
+        .blockquote h4:first-letter {
+            margin-left: -12px;
+        }
+
+
+        .screen-body {
+            display: flex;
+        }
+
+        .screen-body-item {
+            flex: 1;
+            padding: 50px;
+        }
+
+        .screen-body-item.left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-title {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            color: #e4551d;
+            font-size: 26px;
+        }
+
+        .app-title:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 25px;
+            height: 4px;
+            background: #e4551d;
+        }
+
+        .app-contact {
+            margin-top: auto;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .app-form-group {
+            margin-bottom: 15px;
+        }
+
+        .app-form-group.message {
+            margin-top: 40px;
+        }
+
+        .app-form-group.buttons {
+            margin-bottom: 0;
+            text-align: right;
+        }
+
+        .app-form-control {
+            width: 100%;
+            padding: 10px 0;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #666;
+            color: #ddd;
+            font-size: 14px;
+            text-transform: uppercase;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .app-form-control::placeholder {
+            color: #666;
+        }
+
+        .app-form-control:focus {
+            border-bottom-color: #ddd;
+        }
+
+        .app-form-button {
+            background: none;
+            border: none;
+            color: #e4551d;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .app-form-button:hover {
+            color: #e4551d;
+            border-radius: 0.5vh;
+            background-color: #fff;
+        }
+        .btn2 {
+            color: #FFF;
+            font-size: 1em;
+            padding: 12px 30px;
+            border: none;
+            font-weight: bold;
+            background-color: #e4551d;
+            display: inline-block;
+            -webkit-transition: all 0.3s ease-out;
+            -moz-transition: all 0.3s ease-out;
+            -o-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+            margin-bottom: 1em;
+        }
+
+        .btn2:hover {
+            color:#fff;
+            text-decoration: none;
+            background: #637f83;
+            -moz-box-shadow: 8px 8px 8px #637f83;
+            -webkit-box-shadow: 8px 8px 8px #637f83;
+            box-shadow: 8px 8px 8px #637f83;
+        }

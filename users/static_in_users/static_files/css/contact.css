@@ -75,6 +75,9 @@ i.mail {
     color: #fff;
     text-decoration: none;
     background: #637f83;
+    -moz-box-shadow: 8px 8px 8px #637f83;
+    -webkit-box-shadow: 8px 8px 8px #637f83;
+    box-shadow: 8px 8px 8px #637f83;
 }
 
 #id_message {

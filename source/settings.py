@@ -163,6 +163,7 @@ LOGIN_REDIRECT_URL = '/courses'
 LOGIN_URL = '/accounts/login'
 
 SITE_ID = 7
+# use 7 for heroku
 # --- DJANGO REGISTRATION REDUX SETTINGS END ---
 
 # Config for sending mail from our official e-mail address

@@ -13,6 +13,8 @@ from django.dispatch import receiver
 class Course(models.Model):
     course_name = models.CharField(unique=True, max_length=20)
     course_created_date = models.DateTimeField(auto_now_add=True)
+    text = models.TextField(default=None,null=True)
+    link = models.URLField(default=None,null=True,blank=True)
     user = models.ForeignKey(UserProfile,on_delete=models.CASCADE, default=1)
     # students = models.ManyToManyField(UserProfile, related_name='students_to_course')
     students = models.ManyToManyField(UserProfile,through="subscriptions", related_name='students_to_course')

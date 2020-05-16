@@ -1,3 +1,27 @@
 html, body {
-     overflow-x: hidden;
+    overflow-x: hidden;
+}
+
+.btn2 {
+    color: #FFF;
+    font-size: 1em;
+    padding: 12px 30px;
+    border: none;
+    font-weight: bold;
+    background-color: #e4551d;
+    display: inline-block;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    margin-bottom: 1em;
+}
+
+.btn2:hover {
+    color: #fff;
+    text-decoration: none;
+    background: #637f83;
+    -moz-box-shadow: 8px 8px 8px #637f83;
+    -webkit-box-shadow: 8px 8px 8px #637f83;
+    box-shadow: 8px 8px 8px #637f83;
 }
