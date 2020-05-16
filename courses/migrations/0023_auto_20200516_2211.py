@@ -11,10 +11,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='course',
-            name='purchased',
-        ),
+       
         migrations.RemoveField(
             model_name='subscriptions',
             name='date_joined',
