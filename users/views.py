@@ -96,6 +96,11 @@ def charged(request,course_name):
     # print(c.students)
     # c.purchase()
     c.save()
+    user=request.user
+    if user.parent:
+        user.parent.affamount=user.parent.affamount+1
+        print(user.parent.affamount)
+        user.parent.save()
 
     # print(c.students)
     # print("my name is Piyush \n")
@@ -140,7 +145,7 @@ def charge(request,course_name):
     #     print("hi")
     #     return render(request,"courses/charged.html")
     user=request.user
-    
+    print(user.parent)
     context = {
            "title": "Courses",
             "user":user,

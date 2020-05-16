@@ -8,6 +8,7 @@ from pinax.referrals.models import Referral
 class UserProfile(AbstractUser):
     is_professor = models.BooleanField(default=False)
     is_site_admin = models.BooleanField(default=False)
+    affamount = models.IntegerField(default=0)
     # user = models.ForeignKey(UserProfile,on_delete=models.CASCADE, default=1)
     parent=models.ForeignKey( "self" ,on_delete=models.CASCADE, related_name='parent_affiliate' , blank=True,null = True)
     referral = models.OneToOneField(Referral,on_delete=models.CASCADE,blank=True,null=True)
