@@ -16,9 +16,7 @@ e-learning application in this directory:
     $ python manage.py runserver
 
 * Initial data supports 3 types of users for testing purposes:
-    * User (username=user, password=letmein123)
-    * Professor (username=professor, password=letmein123)
-    * Admin (username=admin, password=letmein123)
+    
     * Visit http://127.0.0.1:8000/
 
 # Compatibility
