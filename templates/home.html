@@ -1,159 +1,504 @@
+
+
 {% extends 'base.html' %}
+{% include 'navbar.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% block content %}
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-
-    <div class="row container-fluid text-center" style="background: #3a3a3a;color: white"><h3
-            style="margin-top: 10px">Registrations are open</h3></div>
+{% block content %} 
     <!----start-banner---->
 
-    <div id="countdown" class="banner">
-        <div id="overlay">
-            <div class="container"
-                 style="height: 100%;justify-content: center;align-content: center">
-                <div id="content-video" class="row" style="margin-top: 100px">
-                    <div class="col-sm-7 justify-content-center" style="justify-content: center">
-                        <div class="row">
-                            <iframe width="100%" height="400px"
-                                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                            </iframe>
-                        </div>
-                    </div>
-                    <div class="col-sm-5 d-flex align-items-center">
-                        <b class="row text-center " style="color:white;font-weight: bolder;display: block;
-                            text-align: center;
-                            font-size: 50px;">THE EVENT STARTS IN!
-                        </b>
 
-                        <div class="row text-center" id="demo"
-                             style="position: relative;color: white;font-weight: bold;font-size: 2rem;padding:1vh"></div>
-                        <div class="row text-center ">
-                            <a href="/accounts/register">
-                            <button type="button" class="btn btn1 btn-lg">Register Now</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+
+
+<body>
+   
+
+    <main>
+        <div class="sonar-wrapper">
+           <a href='/accounts/login'><div class="sonar-emitter" ><button id='buttonn' ><h2 class="title title--level3"><i>Welcome</i></h2></a></button>
+            <div class="sonar-wave"></div>   
+          </div>
         </div>
-    </div>
-    <!------Quote--------->
-    
-    <div id="about" class="about_background">
-        <div class="container about text-center">
-            <div class="row" id="about-row">
-                <div class="col-sm-6">
-                    <div class="row" style="font-size: 36px;font-weight: bold;color: #e4551d">ABOUT THE SPEAKER</div>
-                    <div class="row" style="font-size: 24px;">lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-                        ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-                        lorem
-                        ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-                        lorem
-                        ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-                        <ipsum></ipsum>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <img src="{% static  'img/Sandeep-Maheshwari-Motivation-Speaker-In-India-300x218.jpg' %}"
-                         height="218" width="300" alt="image of the speaker">
-                    <div class="row" style="margin: 1vh;font-size: 3vh">SANDEEP MAHESHWARI</div>
-                    <div class="row" style="margin: 1vh;font-size: 2vh">Motivational Speaker</div>
-                    <div class="row" style="margin: 0.5vh;font-size: 1.5vh">Other info</div>
-                </div>
+        
+        <a href="{% url 'courses' %}" target="_blank" rel="noopener noreferrer" class="announcement">
+            We are launching yet another course. <span>More&nbsp;details&nbsp;here</span>
+          </a>
+          <section class="call-out" id="diversity">
+            <svg width="100%" height="300px">
+                <g id="R1" transform="translate(250 250)"> 
+                  <ellipse rx="100" ry="0" opacity=".3">
+                  <animateTransform attributeName="transform" type="rotate" dur="7s" from="0" to="360" repeatCount="indefinite" />
+                  <animate attributeName="cx" dur="8s" values="-20; 220; -20" repeatCount="indefinite" />
+                  <animate attributeName="ry" dur="3s" values="10; 60; 10" repeatCount="indefinite" />
+                  </ellipse>
+                </g>
+                <use xlink:href="#R1" transform="rotate(72 390 150)" />
+                <use xlink:href="#R1" transform="rotate(144 390 150)" />
+                <use xlink:href="#R1" transform="rotate(216 390 150)" />
+                <use xlink:href="#R1" transform="rotate(288 390 150)" />
+                </svg>
+            <div class="confetti" style="--t: 3em; --l: -6em; --s: 0.6; --mama-t: 3em; --mama-l: -6em;  --papa-t: 15em; --papa-r: 5%;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-200px">
+              <svg width="194" height="194" viewBox="0 0 194 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="97" cy="97" r="75" stroke="#FFAB2B" stroke-width="44"/>
+              </svg>
             </div>
-        </div>
-    </div>
-    <div id="quote" style="background-color: #242327">
-        <div class="container">
-            <div class="row">
-                <div class="col-8" style="padding-top: 4vh">
-                    <div class="row" style="margin: 2vh">
-                        <div class="blockquote-wrapper">
-                            <div class="blockquote">
-                                <h1>
-                                    Intuitive design happens when <span style="color:#ffffff">current knowledge</span>
-                                    is the same as the <span style="color:#ffffff">target knowledge.</span>
-                                </h1>
-                                <h4>&mdash;Jared Spool<br><em>Web Site Usability: A Designer's Guide</em></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row screen-container">
-                        <div class="screen-body">
-                            <div class="screen-body-item left">
-                                <div class="app-title">
-                                    <span>CONTACT</span>
-                                    <span>US</span>
-                                </div>
-                                <div class="app-contact">CONTACT INFO : +123456789</div>
-                            </div>
-                            <div class="screen-body-item">
-                                <div class="app-form">
-                                    <div class="app-form-group">
-                                        <input class="app-form-control" placeholder="NAME">
-                                    </div>
-                                    <div class="app-form-group">
-                                        <input class="app-form-control" placeholder="EMAIL">
-                                    </div>
-                                    <div class="app-form-group">
-                                        <input class="app-form-control" placeholder="CONTACT NO">
-                                    </div>
-                                    <div class="app-form-group message">
-                                        <input class="app-form-control" placeholder="MESSAGE">
-                                    </div>
-                                    <div class="app-form-group buttons">
-                                        <button class="app-form-button">CANCEL</button>
-                                        <button class="app-form-button">SEND</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="call-out__content">
+              <h2 class="title title--level3"><i>Upskill yourself!!</i></h2>
+              <p class="call-out__text paragraph-highlight">The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph, page, etc.) that doesn't distract from the layout. A practice not without controversy, laying out pages with meaningless filler text can be very useful when the focus is meant to be on design, not content.
+               
+            </p>   {% if request.user.is_authenticated %}  
+            <a href="{% url 'courses' %}" class="button button--darkblue">Courses</a>
+            <a href="{% url 'affiliate' %}" class="button button--darkblue">Affiliate</a>
+     
+              {% else %}
+              <a href="/accounts/register/" class="button button--darkblue">Signup</a>
+              <a href="/accounts/login/" class="button button--darkblue">LOGIN</a>
+              {% endif %}
+        
+     
             </div>
+          </section>
+          
+        <section class="video-highlight">
+            <div class="confetti" style="--l: -100%; --mama-t: 9em; --mama-l: 85%; --papa-t: -2em; --papa-r: 5%;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-50px">
+                <svg width="240" height="231" viewBox="0 0 240 231" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M96.6529 74.75L206.903 138.403L96.6529 202.056L96.6529 74.75Z" stroke="#FF0061" stroke-width="32.6667"/>
+                </svg>
+              </div>
+        <div class="confetti" style="--t: 3em; --l: -3em; --mama-t: 3em; --mama-l: -3em; --papa-t: 9em; --papa-l: 85%;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-100px">
+          <svg width="104" height="104" viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="52" cy="52" r="41" stroke="#FFAB2B" stroke-width="22"/>
+          </svg>
         </div>
+      
+        <div class="confetti" style="--t: 6em; --l: auto; --r: -9em; --mama-t: 6em; --mama-l: auto; --mama-r: -9em;  --s: 0.7; --papa-t: 17em; --papa-l: -9em;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-300px">
+          <svg width="242" height="242" viewBox="0 0 242 242" fill="none" xmlns="http://www.w3.org/2000/svg" data-confettis data-confettis-animate="rotate" data-confettis-from="50deg" data-confettis-to="10deg">
+            <rect x="62.5405" y="20" width="164.364" height="164.364" transform="rotate(15 62.5405 20)" stroke="#5DD0C2" stroke-width="32.5766" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="video-highlight-grid">
+          <div class="video-highlight__cover papaBear--show">
+            <picture data-lazy-image>
+              <source type="image/webp" data-srcset="/static/2019-highlight-cover.webp 583w, /static/2019-highlight-cover@2x.webp 1166w">
+              <source type="image/png" data-srcset="/static/2019-highlight-cover.jpg 583w, /static/2019-highlight-cover@2x.jpg 1166w">
+              <img
+                alt="Excited crowd raising their hands up in the air"
+                class="conference-card__image"
+                data-src="/static/2019-highlight-cover.jpg">
+            </picture>
+          </div>
+          <div class="video-highlight__content">
+            <h2 class="video-highlight__title title title--level2">What you’ll experience</h2>
+      
+           
+            <p class="video-highlight__text">
+              30+ presentations, demos, lightning talks, case studies, product launches, hands-on workshops, networking, and more—all in a fun and friendly environment!
+            </p>
+            <div class="confetti" style="--l: -100%; --mama-t: 9em; --mama-l: 85%; --papa-t: -2em; --papa-r: 5%;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-50px">
+                <svg width="240" height="231" viewBox="0 0 240 231" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M96.6529 74.75L206.903 138.403L96.6529 202.056L96.6529 74.75Z" stroke="#FF0061" stroke-width="32.6667"/>
+                </svg>
+              </div>
+            <p class="video-highlight__text">
+              Last year more than 1,000 attendees and 25+ sponsors joined us across events in New York, London and San Francisco. Join us in 2020 as the Jamstack movement and conference continues to grow. Together we’re building the future of the web—independent, performant, and secure—and the future is bright!
+            </p>
+            <p>
+              <a href="{% url 'courses' %}"target="_blank" class="button button--white button--intense-shadow" rel="noopener noreferrer">
+                BUY YOUR COURSE...
+              </a>
+            </p>
+          </div>
+        </div>
+        <ul class="twitter-feed">
+      
+            <li>
+              <blockquote cite="https://twitter.com/maribeldotduran/status/1186163025222389762">
+                <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <use xlink:href="#svg-icon-quote"></use>
+                </svg>
+                <p>The <a href="https://twitter.com/jamstackconf" target="_blank" rel="noopener noreferrer">@jamstackconf</a> in SF was the first tech conference Ive attended and it was perfect 👌🏽Thanks to <a href="https://twitter.com/netlify" target="_blank" rel="noopener noreferrer">@Netlify</a>, the sponsors, and the speakers for an amazing event 💫Excited to continue contributing to and spreading the word about the JAMStack! <a href="https://twitter.com/gatsbyjs" target="_blank" rel="noopener noreferrer">@gatsbyjs</a> <a href="https://twitter.com/contentful" target="_blank" rel="noopener noreferrer">@contentful</a> <a href="https://twitter.com/craftcms" target="_blank" rel="noopener noreferrer">@CraftCMS</a> <a href="https://twitter.com/imgix" target="_blank" rel="noopener noreferrer">@imgix</a></p>
+                <footer>
+                  <img src="/static/transparent.png" data-lazy-image data-src="https://pbs.twimg.com/profile_images/911360258634784769/p7Tyh3Hz_400x400.jpg" alt="" class="twitter-feed__thumbnail" />
+                  <div>
+                    <span class="twitter-feed__name">Maribel Duran</span>
+                    <span class="twitter-feed__title">@maribeldotduran</span>
+                  </div>
+                </footer>
+              </blockquote>
+            </li>
+      
+            <li>
+              <blockquote cite="https://twitter.com/mattlovesjenni/status/1184962011710406658">
+                <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <use xlink:href="#svg-icon-quote"></use>
+                </svg>
+                <p>The <a href="https://twitter.com/jamstackconf" target="_blank" rel="noopener noreferrer">@jamstackconf</a> has been fantastic. Great content, but even better networking. So many founders here willing to connect and talk, new product launches, updates from products in their infancy all the way up to <a href="https://twitter.com/googlechrome" target="_blank" rel="noopener noreferrer">@googlechrome</a>. I don't want it to end!!</p>
+                <footer>
+                  <img src="/static/transparent.png" data-lazy-image data-src="https://pbs.twimg.com/profile_images/1095290552415866880/Rs6yNVPw_400x400.jpg" alt="" class="twitter-feed__thumbnail" />
+                  <div>
+                    <span class="twitter-feed__name">Matt Bloomfield</span>
+                    <span class="twitter-feed__title">@mattlovesjenni</span>
+                  </div>
+                </footer>
+              </blockquote>
+            </li>
+      
+            <li>
+              <blockquote cite="https://twitter.com/regisphilibert/status/1184907545103798272">
+                <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <use xlink:href="#svg-icon-quote"></use>
+                </svg>
+                <p>Having a blast at <a href="https://twitter.com/jamstackconf" target="_blank" rel="noopener noreferrer">@jamstackconf</a> SF meeting and listening to people who have been influencing/helping my work for so many years including <a href="https://twitter.com/davatron5000" target="_blank" rel="noopener noreferrer">@davatron5000</a> and public developer nº1 <a href="https://twitter.com/chriscoyier" target="_blank" rel="noopener noreferrer">@chriscoyier</a>.</p>
+                <footer>
+                  <img src="/static/transparent.png" data-lazy-image data-src="https://pbs.twimg.com/profile_images/704685130401636352/5E5SBP0H_400x400.jpg" alt="" class="twitter-feed__thumbnail" />
+                  <div>
+                    <span class="twitter-feed__name">Régis Philibert</span>
+                    <span class="twitter-feed__title">regisphilibert</span>
+                  </div>
+                </footer>
+              </blockquote>
+            </li>
+      
+            <li>
+              <blockquote cite="https://twitter.com/Mandy_Kerr/status/1185253583165390848">
+                <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <use xlink:href="#svg-icon-quote"></use>
+                </svg>
+                <p>Had a fantastic time at <a href="https://twitter.com/jamstackconf" target="_blank" rel="noopener noreferrer">@jamstackconf</a>! Thanks so much for having me, it was an absolute blast! Great content from all the speakers and amazing conversations with attendees! Hopefully get to visit SF again some time 🌟💜💛💙💚🌟 <a href="https://twitter.com/hashtag/jamstackconf" target="_blank" rel="noopener noreferrer">#jamstackconf</a></p>
+                <footer>
+                  <img src="/static/transparent.png" data-lazy-image data-src="https://pbs.twimg.com/profile_images/1190040020742295552/orKoccr6_400x400.jpg" alt="" class="twitter-feed__thumbnail" />
+                  <div>
+                    <span class="twitter-feed__name">Mandy Michael</span>
+                    <span class="twitter-feed__title">Mandy_Kerr</span>
+                  </div>
+                </footer>
+              </blockquote>
+            </li>
+      
+            <li>
+              <blockquote cite="https://twitter.com/_jonnymiller/status/1184965366348300288">
+                <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <use xlink:href="#svg-icon-quote"></use>
+                </svg>
+                <p><a href="https://twitter.com/jamstackconf" target="_blank" rel="noopener noreferrer">@jamstackconf</a> SF 2019 is supplying me with a lot of ammo to implement amazing web experiences... but it’s not as cool as all the free stuff people keep handing me 😍 <a href="https://twitter.com/hashtag/freestuff" target="_blank" rel="noopener noreferrer">#freestuff</a> <a href="https://twitter.com/hashtag/jamstack" target="_blank" rel="noopener noreferrer">#jamstack</a> <a href="https://twitter.com/hashtag/jamstack_conf" target="_blank" rel="noopener noreferrer">#jamstack_conf</a></p>
+                <footer>
+                  <img src="/static/transparent.png" data-lazy-image data-src="https://pbs.twimg.com/profile_images/1137430049681022977/XbHh_Wey_400x400.jpg" alt="" class="twitter-feed__thumbnail" />
+                  <div>
+                    <span class="twitter-feed__name">Jon Miller</span>
+                    <span class="twitter-feed__title">@_jonnymiller</span>
+                  </div>
+                </footer>
+              </blockquote>
+            </li>
+      
+            <li>
+              <blockquote cite="https://twitter.com/tameverts/status/1184530204347305986">
+                <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <use xlink:href="#svg-icon-quote"></use>
+                </svg>
+                <p>Awesome case study from <a href="https://twitter.com/justinbwatts" target="_blank" rel="noopener noreferrer">@justinbwatts</a> showing huge <a href="https://twitter.com/hashtag/webperf" target="_blank" rel="noopener noreferrer">#webperf</a> wins after his team used the Jamstack to develop Loblaw’s Shpp Like a Mother site. </p>
+                <footer>
+                  <img src="/static/transparent.png" data-lazy-image data-src="https://pbs.twimg.com/profile_images/1169024266236567552/-8bauB5T_400x400.jpg" alt="" class="twitter-feed__thumbnail" />
+                  <div>
+                    <span class="twitter-feed__name">Tammy Everts</span>
+                    <span class="twitter-feed__title">tameverts</span>
+                  </div>
+                </footer>
+              </blockquote>
+            </li>
+      
+        </ul>
+      </section>
+      
+        <section class="image-grid" id="2019">
+        <h2 class="image-grid__title title title--level3">Watch our Videos</h2>
+        <ul data-image-grid>
+          <li>
+      
+      
+      <a href="https://www.youtube.com/watch?v=-bLAQ1XR1l8&list=RD-bLAQ1XR1l8&start_radio=1" target="_blank" rel="noopener noreferrer">
+        <div class="image-grid-overlay">
+          <span class="image-grid-overlay__title">EXAMPLE1</span>
+        </div>
+      
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="image-grid__play-button">
+          <use xlink:href="#play-button"></use>
+        </svg>
+      
+        <picture data-lazy-image>
+        <source type="image/webp" data-srcset="/static/image-grid-shawn-erquhart.webp 1x, /static/image-grid-shawn-erquhart@2x.webp 2x">
+        <source type="image/png" data-srcset="/static/image-grid-shawn-erquhart.jpg 1x, /static/image-grid-shawn-erquhart@2x.jpg 2x">
+        <img
+          alt="Shawn Erquhart"
+          class=""
+          src="/static/transparent.png"
+          data-src="/static/image-grid-shawn-erquhart.jpg"
+          width="321"
+          height="228">
+        </picture>
+      
+      </a>
+          </li>
+          <li class="image-grid__image">
+      
+      
+      <picture data-lazy-image>
+        <source type="image/webp" data-srcset="/static/image-grid-crowd-in-the-lobby.webp 1x, /static/image-grid-crowd-in-the-lobby@2x.webp 2x">
+        <source type="image/png" data-srcset="/static/image-grid-crowd-in-the-lobby.jpg 1x, /static/image-grid-crowd-in-the-lobby@2x.jpg 2x">
+        <img
+          alt="Crowd in the lobby"
+          class=""
+          src="/static/transparent.png"
+          data-src="/static/image-grid-crowd-in-the-lobby.jpg"
+          width="321"
+          height="228">
+      </picture>
+      
+          </li>
+          <li>
+      
+      
+      <a href="https://www.youtube.com/watch?v=-bLAQ1XR1l8&list=RD-bLAQ1XR1l8&start_radio=1" target="_blank" rel="noopener noreferrer">
+        <div class="image-grid-overlay">
+          <span class="image-grid-overlay__title">3rd video</span>
+        </div>
+      
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="image-grid__play-button">
+          <use xlink:href="#play-button"></use>
+        </svg>
+      
+        <picture data-lazy-image>
+        <source type="image/webp" data-srcset="/static/image-grid-tammy-everts.webp 1x, /static/image-grid-tammy-everts@2x.webp 2x">
+        <source type="image/png" data-srcset="/static/image-grid-tammy-everts.jpg 1x, /static/image-grid-tammy-everts@2x.jpg 2x">
+        <img
+          alt="Tammy Everts"
+          class=""
+          src="/static/transparent.png"
+          data-src="/static/image-grid-tammy-everts.jpg"
+          width="321"
+          height="228">
+        </picture>
+      
+      </a>
+          </li>
+          <li>
+      
+      
+      <a href="https://www.youtube.com/watch?v=-bLAQ1XR1l8&list=RD-bLAQ1XR1l8&start_radio=1" target="_blank" rel="noopener noreferrer">
+        <div class="image-grid-overlay">
+          <span class="image-grid-overlay__title">2nd video</span>
+        </div>
+      
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="image-grid__play-button">
+          <use xlink:href="#play-button"></use>
+        </svg>
+      
+        <picture data-lazy-image>
+        <source type="image/webp" data-srcset="/static/image-grid-justin-watts.webp 1x, /static/image-grid-justin-watts@2x.webp 2x">
+        <source type="image/png" data-srcset="/static/image-grid-justin-watts.jpg 1x, /static/image-grid-justin-watts@2x.jpg 2x">
+        <img
+          alt="Justin Watts"
+          class=""
+          src="/static/transparent.png"
+          data-src="/static/image-grid-justin-watts.jpg"
+          width="321"
+          height="228">
+        </picture>
+      
+      </a>
+          </li>
+          <li>
+      
+      
+      <a href="https://www.youtube.com/watch?v=-bLAQ1XR1l8&list=RD-bLAQ1XR1l8&start_radio=1" target="_blank" rel="noopener noreferrer">
+        <div class="image-grid-overlay">
+          <span class="image-grid-overlay__title">OUR 1ST VIDEO&nbsp;</span>
+        </div>
+      
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="image-grid__play-button">
+          <use xlink:href="#play-button"></use>
+        </svg>
+      
+        <picture data-lazy-image>
+        <source type="image/webp" data-srcset="/static/image-grid-marc-ammann.webp 1x, /static/image-grid-marc-ammann@2x.webp 2x">
+        <source type="image/png" data-srcset="/static/image-grid-marc-ammann.jpg 1x, /static/image-grid-marc-ammann@2x.jpg 2x">
+        <img
+          alt="Marc Ammann"
+          class=""
+          src="/static/transparent.png"
+          data-src="/static/image-grid-marc-ammann.jpg"
+          width="321"
+          height="228">
+        </picture>
+      
+      </a>
+          </li>
+          <li class="image-grid__image">
+      
+      
+      <picture data-lazy-image>
+        <source type="image/webp" data-srcset="/static/image-grid-crowd-listening-to-a-talk.webp 1x, /static/image-grid-crowd-listening-to-a-talk@2x.webp 2x">
+        <source type="image/png" data-srcset="/static/image-grid-crowd-listening-to-a-talk.jpg 1x, /static/image-grid-crowd-listening-to-a-talk@2x.jpg 2x">
+        <img
+          alt="Crowd listening to a talk"
+          class="image-grid-overlay"
+          src="/static/transparent.png"
+          data-src="/static/image-grid-crowd-listening-to-a-talk.jpg"
+          width="321"
+          height="228">
+      </picture>
+      
+          </li>
+          <li>
+      
+      
+      <a href="https://www.youtube.com/watch?v=-bLAQ1XR1l8&list=RD-bLAQ1XR1l8&start_radio=1" target="_blank" rel="noopener noreferrer">
+        <div class="image-grid-overlay">
+          <span class="image-grid-overlay__title">4th video&nbsp;4th</span>
+        </div>
+      
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="image-grid__play-button">
+          <use xlink:href="#play-button"></use>
+        </svg>
+      
+        <picture data-lazy-image>
+        <source type="image/webp" data-srcset="/static/image-grid-nicole-sullivan.webp 1x, /static/image-grid-nicole-sullivan@2x.webp 2x">
+        <source type="image/png" data-srcset="/static/image-grid-nicole-sullivan.jpg 1x, /static/image-grid-nicole-sullivan@2x.jpg 2x">
+        <img
+          alt="Nicole Sullivan"
+          class=""
+          src="/static/transparent.png"
+          data-src="/static/image-grid-nicole-sullivan.jpg"
+          width="321"
+          height="228">
+        </picture>
+      
+      </a>
+          </li>
+          <li class="image-grid__image">
+      
+      
+      <picture data-lazy-image>
+        <source type="image/webp" data-srcset="/static/image-grid-three-person-posing.webp 1x, /static/image-grid-three-person-posing@2x.webp 2x">
+        <source type="image/png" data-srcset="/static/image-grid-three-person-posing.jpg 1x, /static/image-grid-three-person-posing@2x.jpg 2x">
+        <img
+          alt="Three person posing"
+          class=""
+          src="/static/transparent.png"
+          data-src="/static/image-grid-three-person-posing.jpg"
+          width="321"
+          height="228">
+      </picture>
+      
+          </li>
+        </ul>
+        <p class="image-grid__cta">
+          <a href="https://www.youtube.com/channel/UC8bRyfU7ycLXnEBfvdorpUg/playlists" target="_blank" class="button button--blue" rel="noopener noreferrer">
+            Watch more videos
+          </a>
+        </p>
+      </section>
+      
+      
+        <div class="confetti" style="--t: 195em; --l: 83%; --s: 0.8; --mama-t: 116em; --mama-l: 89%; --papa-t: 100%; --papa-l: 5%; z-index: 3;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-100px">
+          <svg width="150" height="135" viewBox="0 0 150 135" fill="none" xmlns="http://www.w3.org/2000/svg" data-confettis data-confettis-animate="rotate" data-confettis-from="-30deg" data-confettis-to="-75deg">
+            <path d="M77.8179 21.2271L21.3064 36.3693L36.4486 92.8808" stroke="#3FDFF0" stroke-width="23.2928"/>
+            <path d="M72.1821 113.512L128.694 98.3693L113.551 41.8578" stroke="#3FDFF0" stroke-width="23.2928"/>
+          </svg>
+        </div>
+      
+       
+      
+        <div class="confetti" style="--l: -100%; --mama-t: 9em; --mama-l: 85%; --papa-t: -2em; --papa-r: 5%;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-50px">
+            <svg width="240" height="231" viewBox="0 0 240 231" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M96.6529 74.75L206.903 138.403L96.6529 202.056L96.6529 74.75Z" stroke="#FF0061" stroke-width="32.6667"/>
+            </svg>
+          </div>
+      
+      
+        <section class="call-out" id="diver">
+      
+        <div class="confetti" style="--t: 3em; --l: -6em; --s: 0.6; --mama-t: 3em; --mama-l: -6em;  --papa-t: 15em; --papa-r: 5%;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-200px">
+          <svg width="194" height="194" viewBox="0 0 194 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="97" cy="97" r="75" stroke="#FFAB2B" stroke-width="44"/>
+          </svg>
+        </div>
+        <div class="confetti" style="--t: -2em; --l: -8em; --s: 0.35; --mama-s: 0.6; --mama-t: -2em; --mama-l: -8em; --papa-t: 8%; --papa-l: -5%;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-300px">
+            <svg width="303" height="301" viewBox="0 0 303 301" fill="none" xmlns="http://www.w3.org/2000/svg" data-confettis data-confettis-animate="rotate" data-confettis-from="-40deg" data-confettis-to="0">
+              <line y1="-19.7479" x2="278.898" y2="-19.7479" transform="matrix(0.980719 -0.195424 0.196244 0.980555 29.0015 190.242)" stroke="#FF57A8" stroke-width="39.4958"/>
+              <line y1="-19.7479" x2="278.898" y2="-19.7479" transform="matrix(0.196244 0.980555 -0.980719 0.195424 109.872 8.27222)" stroke="#FF57A8" stroke-width="39.4958"/>
+            </svg>
+          </div>
+        <div class="call-out__content">
+          <h2 class="title title--level3">Everyone is Welcome!</h2>
+         
+          <p class="call-out__text paragraph-highlight">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with: Diversity of background, experience, & culture add to the growth of our community by adding new and fresh perspectives. Please review our code of conduct and be ready to participate in a productive and fun event. See you online!</p>
+          <a href="{% url 'about' %}" class="button button--darkblue">About us!</a>
+        </div>
+      </section>
+      
+      <section  id="divers">
 
-    </div>
+      
+        <div class="confetti" style="--t: -32em; --r: -17em; --s: 0.4; --mama-s: 0.6; --mama-t: -32em; --mama-r: -17em; --papa-t: -24em; --papa-r: -15em;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-100px">
+          <svg width="638" height="638" viewBox="0 0 638 638" fill="none" xmlns="http://www.w3.org/2000/svg" data-confettis data-confettis-animate="rotate" data-confettis-from="-30deg" data-confettis-to="0">
+        <path d="M202.125 202.125L595.181 307.444L307.444 595.181L202.125 202.125Z" stroke="#FF6768" stroke-width="44" stroke-linecap="round"/>
+      </svg>
+        </div>
+      
+        <div class="confetti" style="--t: 100%; --l: 10em; --s: 0.6; --mama-t: 100%; --mama-l: 14em; --mama-s: 0.6; --papa-t: -5%; --papa-l: -6%;" data-confettis data-confettis-animate="translateY" data-confettis-from="0" data-confettis-to="-300px">
+          <svg width="259" height="236" viewBox="0 0 259 236" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M61.0463 76.2493L38.2493 175.095L137.095 197.892" stroke="#4444FF" stroke-width="40.3867"/>
+            <path d="M197.757 159.967L220.554 61.1215L121.709 38.3244" stroke="#4444FF" stroke-width="40.3867"/>
+          </svg>
+        </div>
+     
 
+        <div class="call-out__content">
+        <h2 class="title title--level3">Don't miss out!</h2>
+        <ul class="conference-card-list">
+        <li class="conference-card">
+          <h3 class="title title--level4">Virtual COURSE</h3>
+          <time class="conference-card__dates">
+            <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="#svg-icon-calendar"></use>
+            </svg>
+            COMING SOON
+          </time>
+          <p class="conference-card__excerpt">lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”
+        </p>
+          <a href="#" class="button">
+            Early Signup<span class="visually-hidden"> about course</span>
+          </a>
+          <a href="{% url 'contact' %}" class="text-link external-link" target="_blank" rel="noopener noreferrer">
+            CONTACT US
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="#svg-icon-arrow"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="conference-card">
+          <h3 class="title title--level4">MATHS COURSE</h3>
+          <time class="conference-card__dates">
+            <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="#svg-icon-calendar"></use>
+            </svg>
+            NEWLAUNCH
+          </time>
+          <p class="conference-card__excerpt">lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”            /p>
+          <a href="#" target="_blank" class="button" rel="noopener noreferrer">
+            KNOW MORE
+          </a>
+           
+        </li>
+      </ul>
+      </div>
+      
+      </section>
+      
+    </main>
 
-
-
-    <script>
-        document.getElementById("countdown").setAttribute("style", "min-height:" + (window.innerHeight - 140) + "px")
-        document.getElementById("overlay").setAttribute("style", "min-height:" + (window.innerHeight - 140) + "px;background-color:rgba(0, 0, 0, 0.5)")
-        document.getElementById("about").setAttribute("style", "min-height:" + (window.innerHeight) + "px")
-        document.getElementById("about-row").setAttribute("style", "margin-top:" + (window.innerHeight / 3.5) + "px")
-
-        var countDownDate = new Date("Jan 5, 2021 ").getTime();
-
-        // Update the count down every 1 second
-        var x = setInterval(function () {
-
-            // Get today's date and time
-            var now = new Date().getTime();
-
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result in the element with id="demo"
-            document.getElementById("demo").innerHTML = " <span class='countdown'>" + days + " d " + "</span>" +
-                " <span class='countdown'>" + hours + " h " + "</span>" +
-                " <span class='countdown'>" + minutes + " m " + "</span>" +
-                " <span class='countdown'>" + seconds + " s " + "</span>";
-
-            // If the count down is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-    </script>
 {% endblock %}
 

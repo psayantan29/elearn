@@ -25,7 +25,7 @@ SECRET_KEY = '^5b8p7m5j5*w9b=@9g3p4ixy=3!ycpw-ruf0#xj%v)!0cj4h2e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [   "findeducate.herokuapp.com","localhost"]
+ALLOWED_HOSTS = [   "*","localhost"]
 
 
 # Application definition

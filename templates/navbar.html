@@ -1,46 +1,36 @@
 <!-- Navigation bar -->
-<nav class="navbar" role="navigation">
-  <div class="container-fluid">
+<section>
+  
 
-    <!-- Logo -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
-    <!-- Menu items -->
-    <div class="collapse navbar-collapse" id="mainNavBar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        {% if request.user.is_authenticated %}
-          <li><a href="{% url 'courses' %}"><span class="glyphicon glyphicon-education"></span> Courses</a></li>
-        {% else %}
-          <li><a href="/"><span class="glyphicon glyphicon-education"></span> Courses</a></li>
-        {% endif %}
-        {% if request.user.is_authenticated %}
-          <li><a href="{% url 'affiliate' %}"><span class="glyphicon glyphicon-record"></span> Affiliate</a></li>
-        {% else %}
-          <li><a href="/"><span class="glyphicon glyphicon-record"></span> Affiliate</a></li>
-        {% endif %}
-        <li><a href="{% url 'about' %}"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
-        <li><a href="{% url 'contact' %}"><span class="glyphicon glyphicon-earphone"></span> Contact</a></li>
-        
-      </ul>
-
-      <!-- Right align -->
-      <ul class="nav navbar-nav navbar-right">
-        {% if request.user.is_authenticated %}
-          <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> {{ user.get_username }}</a>
-          </li>
-          <li><a href="/accounts/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-        {% else %}
-          <li><a href="/accounts/register"><span class="glyphicon glyphicon-plus"></span> Sign Up</a></li>
-          <li><a href="/accounts/login"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
-        {% endif %}
-      </ul>
-    </div>
-  </div>
-</nav>
+  <nav class="header-nav">
+    <ul class="nav navbar-nav-stickytop">
+      <li class="active"><a href="/"><span class="glyphicon glyphicon"></span> <i>   FIND EDUCATE </i>    </a></li>
+      <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+      {% if request.user.is_authenticated %}
+        <li><a href="{% url 'courses' %}"><span class="glyphicon glyphicon-education"></span> Courses</a></li>
+      {% else %}
+        <li><a href="/"><span class="glyphicon glyphicon-education"></span> Courses</a></li>
+      {% endif %}
+      {% if request.user.is_authenticated %}
+        <li><a href="{% url 'affiliate' %}"><span class="glyphicon glyphicon-record"></span> Affiliate</a></li>
+      {% else %}
+        <li><a href="/"><span class="glyphicon glyphicon-record"></span> Affiliate</a></li>
+      {% endif %}
+      <li><a href="{% url 'about' %}"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+      <li><a href="{% url 'contact' %}"><span class="glyphicon glyphicon-earphone"></span> Contact</a></li>
+      .
+      
+<!-- Right align -->
+<ul class="nav navbar-nav navbar-right">
+  {% if request.user.is_authenticated %}
+    <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> {{ user.get_username }}</a>
+    </li>
+    <li><a href="/accounts/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+  {% else %}
+    <li><a href="/accounts/register"><span class="glyphicon glyphicon-plus"></span> Sign Up</a></li>
+    <li><a href="/accounts/login"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
+  {% endif %}
+</ul>
+</ul>
+  </nav>
+</section>
