@@ -45,6 +45,15 @@ def about(request):
     return render(request, "users/about.html", context)
 
 
+def faq(request):
+    context = {
+        "title": "faq",
+    }
+    # tutorial  = request.COOKIES['parent']
+    # print(tutorial) 
+    return render(request, "users/faq.html", context)   
+
+
 def contact(request):
     contact_form = Contact(request.POST or None)
 
