@@ -54,6 +54,7 @@
     min-height: 100px;
 }
 
+
 .inner-bottom {
     padding: 0 0.4em 0.6em 0.4em;
     color: white;
@@ -67,6 +68,7 @@
 .course-professor-panel {
     margin-top: 20px;
 }
+
 
 /*--courses->chapter--*/
 .row {
